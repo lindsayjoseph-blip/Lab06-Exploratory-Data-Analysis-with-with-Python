@@ -52,3 +52,38 @@ print(filtered_data["Country Name"].tolist())
 #'Albania', 'Australia', 'Austria', 'Barbados', 'Belgium', 'Bermuda', 'Canada', 'Cayman Islands', 'Channel Islands', 'Chile', 'Colombia', 'Costa Rica', 'Croatia', 'Cuba', 'Curacao', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Faroe Islands', 'Finland', 'France', 'Germany', 'Greece', 'Guam', 'Hong Kong SAR, China', 'Iceland', 'Ireland', 'Isle of Man', 'Israel', 'Italy', 'Japan', 'Korea, Rep.', 'Lebanon', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macao SAR, China', 'Maldives', 'Malta', 'Netherlands', 'New Caledonia', 'New Zealand', 'Norway', 'Oman', 'Panama', 'Poland', 'Portugal', 'Puerto Rico', 'Qatar', 'San Marino', 'Singapore', 'Sint Maarten (Dutch part)', 'Slovak Republic', 'Slovenia', 'Spain', 'Sri Lanka', 'St. Martin (French part)', 'Sweden', 'Switzerland', 'Thailand', 'Turkey', 'United Kingdom', 'United States', 'Uruguay', 'Virgin Islands (U.S.)'
 
 ##PART 4##
+
+###1
+#Is there any association between GNI per capita and life expectancy?
+sns.relplot(data, x="GNI per capita", y="Life expectancy, female")
+sns.relplot(data, x="GNI per capita", y="Life expectancy, male")
+#Yes, positive curve, life expectancy increases rapidly for lower GNI per capita but flattens outs the higher the GNI level is
+
+###2
+#Does the association between GNI per capita and life expectancy vary by region?
+sns.relplot(data, x="GNI per capita", y="Life expectancy, female", hue="Region")
+sns.relplot(data, x="GNI per capita", y="Life expectancy, male", hue="Region")
+#Yes
+
+###3
+sns.relplot(data, x="GNI per capita", y="Life expectancy, female", hue="Region", kind="line")
+sns.relplot(data, x="GNI per capita", y="Life expectancy, male", hue="Region", kind="line")
+
+#################### NEED TO ADD SD #####################
+
+###4
+sns.lmplot(data, x="GNI per capita", y="Life expectancy, female", hue="Region")
+sns.lmplot(data, x="GNI per capita", y="Life expectancy, male", hue="Region")
+
+###5
+sns.relplot(data, x="Physicians", y="Life expectancy, female")
+sns.relplot(data, x="Physicians", y="Life expectancy, male")
+g=sns.FacetGrid(data, ###
+#Are these relationships similar for male life expectancy? 
+#5 more questions:
+
+###6
+#a #Is there any association between Internet use and emissions per capita?
+#b #Which are the countries with high emissions? (> 0.03)
+#c #Is there much variation by region (with respect to high emissions vs Internet use)?
+#d #Do all high income economies have high emissions?

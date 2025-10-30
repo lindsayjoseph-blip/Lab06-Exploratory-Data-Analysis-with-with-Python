@@ -120,7 +120,7 @@ print(high_emissions_countries["Country Name"].tolist())
 #'Brunei Darussalam'and 'Qatar'
 
 #c #Is there much variation by region (with respect to high emissions vs Internet use)?
-sns.relplot(data, x="Internet use", y="Emissions per capita", hue="Region")
+sns.relplot(high_emissions_countries, x="Internet use", y="Emissions per capita", hue="Region")
 # Regions that have more internet usage tend to have greater emissions per capita.
 
 #d #Do all high income economies have high emissions?**********

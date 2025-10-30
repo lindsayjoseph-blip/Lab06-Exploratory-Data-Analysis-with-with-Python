@@ -83,13 +83,30 @@ gf=sns.FacetGrid(data, col="Region")
 gf.map(sns.scatterplot, "Physicians", "Life expectancy, female")
 gm=sns.FacetGrid(data, col="Region")
 gm.map(sns.scatterplot, "Physicians", "Life expectancy, male")
+#Are these relationships similar for male life expectancy? from the graph, The relationships between the life expectancy of male and females in their respective regions in function of the chosen numerical feature (Physician proportion) is indeed similar for each gender. 
 
-#Are these relationships similar for male life expectancy? 
 #5 more questions:
+   #1: How does the relationship of woman in national parliament and females in tertiary education vary from a region to another? 
 sns.relplot(data, x="Women in national parliament", y="Tertiary education, female")
 g=sns.FacetGrid(data, col="Region")
 g.map(sns.scatterplot, "Women in national parliament", "Tertiary education, female")
-    
+   #2:How does the relationship between the GNI and the International tourism vary from a region to another? 
+sns.relplot(data, x="International tourism", y="GNI", hue="Region", kind="line") 
+g=sns.FacetGrid(data, col="Region")
+g.map(sns.scatterplot, "International tourism", "GNI")
+   #3:How does the relationship between the proportion of physicians and the women in tertiary education vary from a region to another?
+sns.relplot(data, x="Physicians", y="Tertiary education, female")
+g=sns.FacetGrid(data, col="Region", hue= "Region")
+g.map(sns.scatterplot, "Physicians", "Tertiary education, female")
+   #4:How does the relationship between the proportion of physicians and the men in tertiary education vary from a region to another? 
+sns.relplot(data, x="Physicians", y="Tertiary education, male")
+g=sns.FacetGrid(data, col="Region", hue= "Region")
+g.map(sns.scatterplot, "Physicians", "Tertiary education, male")  
+   #5: Do regions with higher GNI have higher internet use (access to internet)? 
+sns.lmplot(data, x="GNI per capita", y="Internet use", hue="Region")
+g=sns.FacetGrid(data, col="Region", hue= "Region")
+g.map(sns.scatterplot, "GNI per capita", "Internet use")  
+
 ###6
 #a #Is there any association between Internet use and emissions per capita? 
 data["Emissions per capita"]=(data["Greenhouse gas emissions"]/data["Population"])
@@ -104,4 +121,4 @@ print(filtered_countries["Country Name"].tolist())
 #c #Is there much variation by region (with respect to high emissions vs Internet use)?
 sns.relplot(data, x="Internet use", y="Emissions per capita", hue="Region")
 
-#d #Do all high income economies have high emissions?
+#d #Do all high income economies have high emissions?**********

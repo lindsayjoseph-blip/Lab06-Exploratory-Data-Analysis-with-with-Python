@@ -66,10 +66,10 @@ sns.relplot(data, x="GNI per capita", y="Life expectancy, male", hue="Region")
 #Yes
 
 ###3
-sns.relplot(data, x="GNI per capita", y="Life expectancy, female", hue="Region", kind="line")
-sns.relplot(data, x="GNI per capita", y="Life expectancy, male", hue="Region", kind="line")
+sns.relplot(data, x="GNI per capita", y="Life expectancy, female", hue="Region", kind="line", errorbar="sd")
+sns.relplot(data, x="GNI per capita", y="Life expectancy, male", hue="Region", kind="line", errorbar="sd")
 
-#################### NEED TO ADD SD #####################
+#The resaon why we can not see the standard deviation as a line is because it could not be represented through only having one value per item category. 
 
 ###4
 sns.lmplot(data, x="GNI per capita", y="Life expectancy, female", hue="Region")
@@ -78,12 +78,30 @@ sns.lmplot(data, x="GNI per capita", y="Life expectancy, male", hue="Region")
 ###5
 sns.relplot(data, x="Physicians", y="Life expectancy, female")
 sns.relplot(data, x="Physicians", y="Life expectancy, male")
-g=sns.FacetGrid(data, ###
+
+gf=sns.FacetGrid(data, col="Region")
+gf.map(sns.scatterplot, "Physicians", "Life expectancy, female")
+gm=sns.FacetGrid(data, col="Region")
+gm.map(sns.scatterplot, "Physicians", "Life expectancy, male")
+
 #Are these relationships similar for male life expectancy? 
 #5 more questions:
-
+sns.relplot(data, x="Women in national parliament", y="Tertiary education, female")
+g=sns.FacetGrid(data, col="Region")
+g.map(sns.scatterplot, "Women in national parliament", "Tertiary education, female")
+    
 ###6
-#a #Is there any association between Internet use and emissions per capita?
-#b #Which are the countries with high emissions? (> 0.03)
+#a #Is there any association between Internet use and emissions per capita? 
+data["Emissions per capita"]=(data["Greenhouse gas emissions"]/data["Population"])
+sns.relplot(data, x="Internet use", y="Emissions per capita")
+print(data["Emissions per capita"])
+
+#b #Which are the countries with high emissions? (> 0.03)?
+filtered_countries=data[data["Emissions per capita"]>0.03]
+print(filtered_countries["Country Name"].tolist())
+#'Brunei Darussalam'and 'Qatar'
+
 #c #Is there much variation by region (with respect to high emissions vs Internet use)?
+sns.relplot(data, x="Internet use", y="Emissions per capita", hue="Region")
+
 #d #Do all high income economies have high emissions?

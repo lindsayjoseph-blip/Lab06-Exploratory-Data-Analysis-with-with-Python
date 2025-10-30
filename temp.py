@@ -115,8 +115,8 @@ print(data["Emissions per capita"])
 #There is a significant relation. AS internet usage gets bigger, the emissions per capita increase too. 
 
 #b #Which are the countries with high emissions? (> 0.03)?
-filtered_countries=data[data["Emissions per capita"]>0.03]
-print(filtered_countries["Country Name"].tolist())
+high_emissions_countries=data[data["Emissions per capita"]>0.03]
+print(high_emissions_countries["Country Name"].tolist())
 #'Brunei Darussalam'and 'Qatar'
 
 #c #Is there much variation by region (with respect to high emissions vs Internet use)?
@@ -124,3 +124,6 @@ sns.relplot(data, x="Internet use", y="Emissions per capita", hue="Region")
 # Regions that have more internet usage tend to have greater emissions per capita.
 
 #d #Do all high income economies have high emissions?**********
+# No, not all high incomes have high emissions because we have learned that 66 countries have high income economies while 2 countries have high emissions.
+    
+        
